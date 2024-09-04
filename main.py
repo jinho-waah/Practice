@@ -15,6 +15,8 @@ def compare_numbers():
         print("==")
 
 
+
+
 # 함수 실행
 if __name__ == "__main__":
     compare_numbers()
