@@ -1,7 +1,8 @@
-def reverse_words(S):
+
+def make_reverse(S):
     result = []
     word = []
-    inside_tag = False  # 태그 안에 있는지 여부
+    inside_flag = False  # 태그 안에 있는지 여부
 
     for char in S:
         if char == '<':
@@ -10,13 +11,13 @@ def reverse_words(S):
                 result.append(''.join(reversed(word)))
                 word = []
             # 태그의 시작
-            inside_tag = True
+            inside_flag = True
             result.append(char)
         elif char == '>':
             # 태그의 끝
-            inside_tag = False
+            inside_flag = False
             result.append(char)
-        elif inside_tag:
+        elif inside_flag:
             # 태그 안에서는 그대로 추가
             result.append(char)
         elif char == ' ':
@@ -40,4 +41,8 @@ def reverse_words(S):
 S = input()
 
 # 결과 출력
-print(reverse_words(S))
+print(make_reverse(S))
+
+
+# memory 32684
+# time 44
