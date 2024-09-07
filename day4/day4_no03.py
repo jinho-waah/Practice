@@ -14,7 +14,6 @@ for _ in range(week_num):
                 work_time_dict[worker] = work_time_list[time]
 
 # 만약 아무도 근무하지 않았으면 "Yes" 출력
-print(work_time_dict)
 if not work_time_dict:  # work_time_dict가 비었을 경우가 있네 ;;;
     print("Yes")
 else:
