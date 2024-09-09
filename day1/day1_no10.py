@@ -25,22 +25,59 @@
 
 import sys
 # input = sys.stdin.readline
+# num = int(input())
+#
+# for _ in range(num):
+#     a, d, x = map(int, input().split())
+#
+#     if x < a:
+#         print(1, x)
+#         continue
+#
+#     level = 1
+#     start = a
+#     end = a
+#     while end < x:
+#         level += 1
+#         start = end + 1
+#         end = start + a + (level - 1) * d - 1
+#
+#     print(level, x - start + 1)
+
+
+def get_left(a, d, n):
+    return (n - 1) * (2 * a + (n - 2) * d) // 2 + 1
+
+import sys
+input = sys.stdin.readline
+
 num = int(input())
 
 for _ in range(num):
     a, d, x = map(int, input().split())
 
-    if x < a:
-        print(1, x)
-        continue
-
+    low = 1
+    high = 10 ** 6
     level = 1
-    start = a
-    end = a
-    while end < x:
-        level += 1
-        start = end + 1
-        end = start + a + (level - 1) * d - 1
+    left = 1
 
-    print(level, x - start + 1)
+    # 이분 탐색을 통해 층(level)을 찾는다
+    while low <= high:
+        level = (low + high) // 2
+        left = get_left(a, d, level)
+
+        if left > x:
+            high = level - 1  # 범위를 좁힌다 (high를 줄인다)
+        elif left <= x:
+            if get_left(a, d, level + 1) > x:  # x가 해당 층에 속하면 종료
+                break
+            low = level + 1  # 범위를 좁힌다 (low를 늘린다)
+
+    # 해당 층에서 x가 몇 번째인지 계산
+    block_index = x - left + 1
+
+    print(level, block_index)
+
+
+
 
