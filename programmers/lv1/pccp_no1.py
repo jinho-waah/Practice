@@ -10,6 +10,11 @@ def solution(bandage, health, attacks):
     while current_health > 0:
         time += 1
 
+        # 공격이 끝난 경우
+        if time > max(attack_times.keys()):
+            print(max(attack_times.keys()))
+            return current_health  # 모든 공격이 끝난
+
         # 몬스터의 공격이 있는지 확인
         if time in attack_times:
             current_health -= attack_times[time]  # 공격으로 체력 감소
@@ -26,9 +31,5 @@ def solution(bandage, health, attacks):
             current_health += y  # 추가 회복
             current_health = min(current_health, max_health)  # 최대 체력을 넘지 않도록 함
             success_time = 0  # 연속 성공 시간 초기화
-
-        # 공격이 끝난 경우
-        if time > max(attack_times.keys()):
-            return current_health  # 모든 공격이 끝난
 
     return -1
