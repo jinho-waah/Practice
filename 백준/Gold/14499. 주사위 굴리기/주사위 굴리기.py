@@ -1,10 +1,4 @@
 import sys
-from collections import defaultdict, deque
-from statistics import mean
-import heapq
-from itertools import combinations
-import math
-sys.setrecursionlimit(2000)
 
 input = sys.stdin.readline
 
@@ -40,15 +34,12 @@ for c in commands:
         roll_dice(c)
 
         if map_data[map_x][map_y] == 0:
-            # 칸이 0이면 주사위의 바닥면 값을 칸에 복사
             map_data[map_x][map_y] = dice[6]
 
         else:
-            # 칸이 0이 아니면 칸의 값을 주사위의 바닥면으로 복사하고 칸은 0으로 만듦
             dice[6] = map_data[map_x][map_y]
             map_data[map_x][map_y] = 0
 
-        # 현재 주사위의 윗면 출력
         print(dice[1])
 
         # 좌표 갱신
